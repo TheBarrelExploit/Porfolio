@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+
+:root {
+  --bg: #0c0b09;
+  --bg-card: rgba(255, 255, 255, 0.025);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(217, 119, 6, 0.3);
+
+  /* Accent — Cobre Técnico */
+  --accent: #d97706;
+  --accent-light: #f59e0b;
+  --accent-bright: #fbbf24;
+  --accent-dim: rgba(217, 119, 6, 0.1);
+
+  /* Text */
+  --text-primary: #f5ede0;
+  --text-secondary: #9a9080;
+  --text-muted: #685f54;
+  --text-accent: #fcd29a;
+
+  /* Semantic */
+  --jade: #14b8a6;
+  --blue: #60a5fa;
+  --pink: #f472b6;
+  --yellow: #fbbf24;
+
+  /* Fonts — injected by next/font via CSS variables */
+  --font-sans: var(--font-sans, 'system-ui', sans-serif);
+  --font-mono: var(--font-mono, 'monospace');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+@keyframes pfPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* ============================================
+   HERO NOISE TEXTURE
+   ============================================ */
+.hero-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   LAYOUT UTILITIES — desktop defaults
+   ============================================ */
+
+.sec {
+  padding: 64px max(32px, calc((100% - 1060px) / 2));
+}
+
+.sec-hero {
+  padding: 56px max(32px, calc((100% - 1060px) / 2)) 50px;
+}
+
+.nav-pad {
+  padding-left: max(32px, calc((100% - 1060px) / 2));
+  padding-right: max(32px, calc((100% - 1060px) / 2));
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.hero-text {
+  max-width: 520px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 11px;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.nav-links {
+  display: flex;
+}
+
+.featured-card {
+  padding: 28px;
+}
+
+.projects-small-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* ============================================
+   MOBILE — max-width: 640px
+   ============================================ */
+@media (max-width: 640px) {
+
+  .sec,
+  .sec-hero {
+    padding: 40px 20px;
+  }
+
+  .nav-pad {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .nav-links {
+    display: none;
+  }
+
+  .hero-section {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+  }
+  .hero-text {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-text h1 {
+    font-size: 28px !important;
+  }
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .featured-card {
+    padding: 16px !important;
+  }
+  .projects-small-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
